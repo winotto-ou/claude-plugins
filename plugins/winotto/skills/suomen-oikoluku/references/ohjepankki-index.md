@@ -1,6 +1,6 @@
 # Kielitoimiston ohjepankki – hakemisto
 
-Kaikki ohjepankin ohjeet (629 kpl, sivukartta 2026-09-06), ryhmiteltynä aihepiireittäin. Käytä tätä löytääksesi oikean ohjeen URL:n ja hae sivu WebFetchillä. Lähde: https://kielitoimistonohjepankki.fi/ (© Kotimaisten kielten keskus, CC BY-NC-ND 4.0).
+Kaikki ohjepankin ohjeet (629 kpl, sivukartta 2026-09-06), ryhmiteltynä aihepiireittäin. Hae tiedostosta hakusanalla (grep), älä lue koko tiedostoa. Hae sitten ohje verkosta (web fetch; jos se ei onnistu, verkkohaku `site:kielitoimistonohjepankki.fi <hakusana>`). Lähde: https://kielitoimistonohjepankki.fi/ (© Kotimaisten kielten keskus, CC BY-NC-ND 4.0).
 
 Hakuvinkki: aihepiirisivut ovat muotoa `https://kielitoimistonohjepankki.fi/aihepiiri/<alaryhmä>/`, ohjeet muotoa `https://kielitoimistonohjepankki.fi/ohje/<slug>/`. Sivuston oma haku: `https://kielitoimistonohjepankki.fi/?s=<hakusana>`.
 
@@ -33,8 +33,8 @@ Hakuvinkki: aihepiirisivut ovat muotoa `https://kielitoimistonohjepankki.fi/aihe
 - [Kirjoitus- ja ääntöasu: kuulostaa vai ”kuullostaa”, piirustus vai ”piirrustus”?](https://kielitoimistonohjepankki.fi/ohje/kirjoitus-ja-aantoasu-kuulostaa-vai-kuullostaa-piirustus-vai-piirrustus/)
 - [Kirjoitus- ja ääntöasu: nuorimpia ja nuorinpa](https://kielitoimistonohjepankki.fi/ohje/kirjoitus-ja-aantoasu-nuorimpia-ja-nuorinpa/)
 - [Kirjoitus- ja ääntöasu: ranka, rangat, magneetti](https://kielitoimistonohjepankki.fi/ohje/kirjoitus-ja-aantoasu-ranka-rangat-magneetti/)
-- [Kirjoitus- ja ääntöasu: sanopas vai &#8221;sanoppas&#8221;?](https://kielitoimistonohjepankki.fi/ohje/kirjoitus-ja-aantoasu-sanopas-vai-sanoppas/)
-- [Kirjoitus- ja ääntöasu: sydämen vai &#8221;sydämmen&#8221;?](https://kielitoimistonohjepankki.fi/ohje/kirjoitus-ja-aantoasu-sydamen-vai-sydammen/)
+- [Kirjoitus- ja ääntöasu: sanopas vai ”sanoppas”?](https://kielitoimistonohjepankki.fi/ohje/kirjoitus-ja-aantoasu-sanopas-vai-sanoppas/)
+- [Kirjoitus- ja ääntöasu: sydämen vai ”sydämmen”?](https://kielitoimistonohjepankki.fi/ohje/kirjoitus-ja-aantoasu-sydamen-vai-sydammen/)
 - [i vai ei i:tä? (aloittaa, kehottaa)](https://kielitoimistonohjepankki.fi/ohje/i-vai-ei-ita-aloittaa-kehottaa/)
 - [i vai ei i:tä? (viikoittain, kaksostutkimus, kolmoishyppy)](https://kielitoimistonohjepankki.fi/ohje/i-vai-ei-ita-viikoittain-kaksostutkimus-kolmoishyppy/)
 
@@ -293,7 +293,7 @@ Hakuvinkki: aihepiirisivut ovat muotoa `https://kielitoimistonohjepankki.fi/aihe
 ### erikoismerkit
 
 - [Asteriski eli tähtimerkki (*)](https://kielitoimistonohjepankki.fi/ohje/asteriski-eli-tahtimerkki/)
-- [Et-merkki (&#038;)](https://kielitoimistonohjepankki.fi/ohje/et-merkki/)
+- [Et-merkki (&)](https://kielitoimistonohjepankki.fi/ohje/et-merkki/)
 - [Pienempi kuin- ja suurempi kuin -merkit](https://kielitoimistonohjepankki.fi/ohje/pienempi-kuin-ja-suurempi-kuin-merkit/)
 - [Plus-miinusmerkki](https://kielitoimistonohjepankki.fi/ohje/plus-miinusmerkki/)
 - [Plusmerkki ja miinusmerkki](https://kielitoimistonohjepankki.fi/ohje/plusmerkki-ja-miinusmerkki/)
@@ -490,7 +490,7 @@ Hakuvinkki: aihepiirisivut ovat muotoa `https://kielitoimistonohjepankki.fi/aihe
 - [Passiivi: näkyy tehtävän, ”näytään tehtävän”](https://kielitoimistonohjepankki.fi/ohje/passiivi-nakyy-tehtavan-naytaan-tehtavan/)
 - [Passiivi: passiivimaisia rakenteita](https://kielitoimistonohjepankki.fi/ohje/passiivi-passiivimaisia-rakenteita/)
 - [Passiivimaisia rakenteita: aina voi yrittää, yleistävä 3. persoona](https://kielitoimistonohjepankki.fi/ohje/passiivimaisia-rakenteita-aina-voi-yrittaa-yleistava-3-persoona/)
-- [Passiivimaisia rakenteita: aina voit yrittää, &#8221;sinä-passiivi&#8221;](https://kielitoimistonohjepankki.fi/ohje/passiivimaisia-rakenteita-aina-voit-yrittaa-sina-passiivi/)
+- [Passiivimaisia rakenteita: aina voit yrittää, ”sinä-passiivi”](https://kielitoimistonohjepankki.fi/ohje/passiivimaisia-rakenteita-aina-voit-yrittaa-sina-passiivi/)
 - [Passiivimaisia rakenteita: määrätyissä paikoissa, keskusteltu kysymys](https://kielitoimistonohjepankki.fi/ohje/passiivimaisia-rakenteita-maaratyissa-paikoissa-keskusteltu-kysymys/)
 - [Passiivimaisia rakenteita: on korjattavana, joutui korjattavaksi](https://kielitoimistonohjepankki.fi/ohje/passiivimaisia-rakenteita-on-korjattavana-joutui-korjattavaksi/)
 - [Passiivimaisia rakenteita: teksti kääntyi kiinaksi](https://kielitoimistonohjepankki.fi/ohje/passiivimaisia-rakenteita-teksti-kaantyi-kiinaksi/)
@@ -660,7 +660,7 @@ Hakuvinkki: aihepiirisivut ovat muotoa `https://kielitoimistonohjepankki.fi/aihe
 - [Nimenvalinta: pääkaupunkiseutu, Suur-Helsinki ja Helsingin seutu](https://kielitoimistonohjepankki.fi/ohje/nimenvalinta-paakaupunkiseutu-suur-helsinki-ja-helsingin-seutu/)
 - [Nimenvalinta: usean maan alueella sijaitsevat paikat (Elbe vai Labe?)](https://kielitoimistonohjepankki.fi/ohje/nimenvalinta-usean-maan-alueella-sijaitsevat-paikat-elbe-vai-labe/)
 - [Nimenvalinta: Århus vai Aarhus?](https://kielitoimistonohjepankki.fi/ohje/nimenvalinta-arhus-vai-aarhus/)
-- [Nimien taivutus: Riian vai &#8221;Riikan&#8221;?](https://kielitoimistonohjepankki.fi/ohje/nimien-taivutus-riian-vai-riikan/)
+- [Nimien taivutus: Riian vai ”Riikan”?](https://kielitoimistonohjepankki.fi/ohje/nimien-taivutus-riian-vai-riikan/)
 - [Nimien taivutus: Thaimaahan](https://kielitoimistonohjepankki.fi/ohje/nimien-taivutus-thaimaahan/)
 - [Nimien taivutus: Töölöön](https://kielitoimistonohjepankki.fi/ohje/nimien-taivutus-tooloon/)
 - [Nimien taivutus: kunnannimet ja muut asutusnimet](https://kielitoimistonohjepankki.fi/ohje/nimien-taivutus-kunnannimet-ja-muut-asutusnimet/)

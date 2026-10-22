@@ -7,7 +7,8 @@ All sources below are published or maintained by **Kotimaisten kielten keskus (K
 - URL: https://kielitoimistonohjepankki.fi/
 - What: ~630 official guidance articles (ohjeet) in five areas — *Merkit, numerot ja lyhenteet*; *Nimet*; *Sana* (yhdyssanat, alkukirjain, taivutus, vierassanat…); *Lause* (objekti, sijamuodon valinta, lauseenvastikkeet, passiivi…); *Teksti* (tyyli, otsikot, luettelot). Also *Hyvän virkakielen ohjeita* (`/vk/`) and *Hyvän nimistön opas* (`/hno/`).
 - URL patterns: article `https://kielitoimistonohjepankki.fi/ohje/<slug>/`; topic page `https://kielitoimistonohjepankki.fi/aihepiiri/<alaryhmä>/`; site search `https://kielitoimistonohjepankki.fi/?s=<hakusana>`; recent changes `https://kielitoimistonohjepankki.fi/viimeaikaisia-muutoksia/`.
-- Full index of all articles with titles, grouped by topic: `ohjepankki-index.md` (snapshot of the sitemap, 2026-09-06; refresh by re-reading the sitemap at `https://kielitoimistonohjepankki.fi/sitemap.xml`).
+- Full index of all articles with titles, grouped by topic: `ohjepankki-index.md` (snapshot of the sitemap, 2026-09-06; refresh by re-reading the sitemap at `https://kielitoimistonohjepankki.fi/sitemap.xml`). Search it for a keyword; do not read the whole file. The Soome keelenõu connector's `ohjepankki_search` and `ohjepankki_article` search and read the same articles.
+- If a web fetch of a constructed article URL is refused, search the web with `site:kielitoimistonohjepankki.fi <hakusana>` and fetch the article from the results.
 - Status: the online, continuously updated successor of the printed *Kielitoimiston oikeinkirjoitusopas* and *Kielitoimiston kielioppiopas*. Treat it as the norm.
 - Licence: CC BY-NC-ND 4.0, © Kotimaisten kielten keskus. Cite as: *Ohjeen otsikko. Kielitoimiston ohjepankki. URL. Viitattu pp.kk.vvvv.*
 
@@ -23,7 +24,8 @@ All sources below are published or maintained by **Kotimaisten kielten keskus (K
 - URL: https://voikko.puimula.org/ — source https://github.com/voikko/corevoikko
 - What: free Finnish spell checker, grammar checker, hyphenator and morphological analyser (the engine behind LibreOffice's and many Linux tools' Finnish checking). Word data derives from Kotus word lists (Joukahainen/voikko-fi).
 - Install: Debian/Ubuntu `apt-get install libvoikko1 voikko-fi` then `pip install libvoikko`; macOS `brew install libvoikko` (dictionary via `voikko-fi`); Windows: see the Voikko site.
-- Script: `scripts/voikko_check.py <file>` prints misspellings with suggestions, grammar findings and (with `--analyze`) morphological analyses.
+- Script: `scripts/voikko_check.py <file>` in this skill's folder prints misspellings with suggestions, grammar findings and (with `--analyze`) morphological analyses. It cannot be installed in a claude.ai code sandbox; skip it there.
+- Tool: the Soome keelenõu connector's `voikko_check` runs the same check on the server, with no install.
 - Limits: it does not know all proper names, new words or rare compounds, and its grammar checker covers only a handful of mechanical error types. Its flags are hints to verify, not verdicts.
 
 ## 4. VISK – Iso suomen kielioppi (verkkoversio)

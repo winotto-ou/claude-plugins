@@ -55,9 +55,39 @@ class CheckTest(unittest.TestCase):
         code, out = run_check(self.root)
         self.assertEqual(code, 0, out)
 
-    def test_four_skills_present(self):
+    def test_six_skills_present(self):
         skills = {d.name for d in (REPO / "plugins" / "winotto" / "skills").iterdir() if d.is_dir()}
-        self.assertEqual({"jw-search", "estonian-proofreading", "suomen-oikoluku", "ariregister"}, skills)
+        self.assertEqual({"jw-search", "estonian-proofreading", "suomen-oikoluku", "ariregister",
+                          "postkast", "piibli-algkeeled"}, skills)
+
+    def test_six_mcp_servers(self):
+        data = json.loads((REPO / "plugins" / "winotto" / ".mcp.json").read_text(encoding="utf-8"))
+        self.assertEqual({"jw", "bible-lex", "et-proof", "fi-proof", "email", "arireg"}, set(data["mcpServers"]))
+
+    def test_plugin_version(self):
+        data = json.loads((REPO / "plugins" / "winotto" / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
+        self.assertEqual("1.2.0", data["version"])
+
+    def test_every_skill_lists_bundle_prefixes(self):
+        prefixes = ["jw_", "algkeeled_", "keelenou_", "postkast_", "ariregister_", "suomi_"]
+        for sk in sorted((REPO / "plugins" / "winotto" / "skills").glob("*/SKILL.md")):
+            text = sk.read_text(encoding="utf-8")
+            with self.subTest(skill=sk.parent.name):
+                self.assertIn("## Tool names", text)
+                section = text.split("## Tool names", 1)[1].split("\n## ", 1)[0]
+                for p in prefixes:
+                    self.assertIn(f"`{p}", section)
+
+    def test_finnish_index_has_no_html_entities(self):
+        import re
+        idx = REPO / "plugins" / "winotto" / "skills" / "suomen-oikoluku" / "references" / "ohjepankki-index.md"
+        self.assertEqual([], re.findall(r"&#?[A-Za-z0-9]+;", idx.read_text(encoding="utf-8")))
+
+    def test_finnish_examples_are_not_kotus_text(self):
+        ex = REPO / "plugins" / "winotto" / "skills" / "suomen-oikoluku" / "examples"
+        for name in ("clean.txt", "with-errors.txt"):
+            with self.subTest(name=name):
+                self.assertNotIn("Kielenhuolto on toimintaa", (ex / name).read_text(encoding="utf-8"))
 
     # Rule 1
     def test_rule1_broken_json(self):

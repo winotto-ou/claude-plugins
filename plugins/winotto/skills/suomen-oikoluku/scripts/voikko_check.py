@@ -12,6 +12,8 @@ names, new words and rare compounds are often flagged although correct.
 Requires libvoikko + the Finnish dictionary:
     Debian/Ubuntu:  sudo apt-get install libvoikko1 voikko-fi && pip install libvoikko
     macOS:          brew install libvoikko  (dictionary: see https://voikko.puimula.org/)
+Voikko cannot be installed in a claude.ai code sandbox; skip the mechanical pass there
+(or use the voikko_check tool of the Soome keelenõu connector).
 """
 import json
 import re
@@ -19,8 +21,10 @@ import sys
 
 INSTALL_HINT = (
     "Voikko is not available in this environment.\n"
-    "Install: apt-get install libvoikko1 voikko-fi && pip install libvoikko "
-    "(macOS: brew install libvoikko). Continue the review without the mechanical pass."
+    "On your own machine install it: apt-get install libvoikko1 voikko-fi && pip install libvoikko "
+    "(macOS: brew install libvoikko). In a claude.ai code sandbox it cannot be installed: skip this step there.\n"
+    "If the Soome keelenõu connector is available, use its voikko_check tool instead. "
+    "Otherwise continue the review without the mechanical pass and say it was skipped."
 )
 
 TOKEN_RE = re.compile(r"[A-Za-zÅÄÖåäöÉéÜüŠšŽž0-9][A-Za-zÅÄÖåäöÉéÜüŠšŽž0-9'’\-\.:]*")

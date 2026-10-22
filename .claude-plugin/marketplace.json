@@ -9,7 +9,7 @@
     {
       "name": "winotto",
       "source": "./plugins/winotto",
-      "description": "jw.org otsing, Piibli algkeeled, Eesti keelenõu, Soome keelenõu, Postkast, Äriregister ning eesti ja soome keele toimetamise skillid."
+      "description": "jw.org otsing, Piibli algkeeled, Eesti keelenõu, Soome keelenõu, Postkast ja Äriregister ning nende kuus skilli."
     }
   ]
 }

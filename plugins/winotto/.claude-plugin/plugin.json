@@ -1,8 +1,8 @@
 {
   "name": "winotto",
   "displayName": "Winotto",
-  "version": "1.1.0",
-  "description": "jw.org otsing, Piibli algkeeled, Eesti keelenõu, Soome keelenõu, Postkast, Äriregister ning eesti ja soome keele toimetamise skillid.",
+  "version": "1.2.0",
+  "description": "jw.org otsing, Piibli algkeeled, Eesti keelenõu, Soome keelenõu, Postkast ja Äriregister ning nende kuus skilli.",
   "author": {
     "name": "Winotto OÜ",
     "url": "https://mcp.winotto.com"

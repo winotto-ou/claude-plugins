@@ -1,6 +1,6 @@
 # winotto
 
-Plugin `winotto@winotto-ou`: kuus ühendust ja neli skilli (jw.org otsing, Äriregistri andmed, eesti ja soome keele toimetamine).
+Plugin `winotto@winotto-ou`: kuus ühendust ja kuus skilli (jw.org otsing, Piibli algkeeled, Postkast, Äriregistri andmed, eesti ja soome keele toimetamine).
 
 ## Paigaldus
 
@@ -25,10 +25,12 @@ Või kahes sammus: `/plugin marketplace add winotto-ou/claude-plugins` ja `/plug
 
 ## Skillid
 
-- `jw-search`: Piibli salmide, jw.org sisu, artiklite ja videote subtiitrite otsing `jw` ühenduse tööriistadega.
+- `jw-search`: Piibli salmid, jw.org sisu, artiklid, päevatekst, koosoleku töövihik ja videote subtiitrite otsing `jw` ühenduse tööriistadega.
+- `piibli-algkeeled`: salmi heebrea, aramea ja kreeka sõnad, sõnaraamatu artiklid ja esinemised `bible-lex` ühenduse tööriistadega, koos Uue maailma tõlke tekstiga `jw` ühendusest.
 - `estonian-proofreading`: eesti teksti korrektuur ja keelenõu `et-proof` ühenduse (EKI andmed, Ekilex) tööriistadega.
-- `ariregister`: Eesti ettevõtete, registrikoodide ja juhatuse liikmete päringud `arireg` ühenduse tööriistadega.
-- `suomen-oikoluku`: soome keele oikoluku Kotuse allikate ja valikulise Voikko kontrolliga.
+- `suomen-oikoluku`: soome keele oikoluku Kotuse allikate järgi, `fi-proof` ühenduse tööriistadega (Voikko, Kielitoimiston ohjepankki) või ilma nendeta.
+- `postkast`: oma kirjade lugemine, kokkuvõtted, vastused, mustandid, tõstmine ja kustutamine `email` ühenduse tööriistadega; saadab ja kustutab ainult sinu selge loa järel.
+- `ariregister`: Eesti ettevõtete, registrikoodide, juhatuse liikmete ning valdkonna ja asukoha järgi päringud `arireg` ühenduse tööriistadega.
 
 ## Litsents
 
@@ -36,4 +38,5 @@ Skillifailid on MIT-litsentsiga (vt repo `LICENSE`). Järgmised failid sisaldava
 
 - `skills/suomen-oikoluku/references/ohjepankki-index.md`
 - tsiteeritud näited failis `skills/suomen-oikoluku/references/pikaohje.md`
-- `skills/suomen-oikoluku/examples/*.txt`
+
+Kaust `skills/suomen-oikoluku/examples/` sisaldab meie endi kirjutatud soomekeelset teksti (MIT).
