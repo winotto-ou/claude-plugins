@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "jw": {
+      "type": "http",
+      "url": "https://mcp.winotto.com/jw/mcp"
+    },
+    "bible-lex": {
+      "type": "http",
+      "url": "https://mcp.winotto.com/bible-lex/mcp"
+    },
+    "et-proof": {
+      "type": "http",
+      "url": "https://mcp.winotto.com/et-proof/mcp"
+    },
+    "email": {
+      "type": "http",
+      "url": "https://mcp.winotto.com/email/mcp"
+    }
+  }
+}

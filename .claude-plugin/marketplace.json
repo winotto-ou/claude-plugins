@@ -1,0 +1,15 @@
+{
+  "name": "winotto-ou",
+  "description": "Winotto tööriistad ja skillid Claude'ile.",
+  "owner": {
+    "name": "Winotto OÜ",
+    "url": "https://mcp.winotto.com"
+  },
+  "plugins": [
+    {
+      "name": "winotto",
+      "source": "./plugins/winotto",
+      "description": "jw.org otsing, Piibli algkeeled, Eesti keelenõu, Postkast ning eesti ja soome keele toimetamise skillid."
+    }
+  ]
+}
