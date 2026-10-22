@@ -23,7 +23,9 @@ Või kahes sammus: `/plugin marketplace add winotto-ou/claude-plugins` ja `/plug
 
 ## Skillid
 
-Skillid asuvad kaustas `skills/`; loend lisatakse siia, kui skillid on olemas.
+- `jw-search`: Piibli salmide, jw.org sisu, artiklite ja videote subtiitrite otsing `jw` ühenduse tööriistadega.
+- `estonian-proofreading`: eesti teksti korrektuur ja keelenõu `et-proof` ühenduse (EKI andmed, Ekilex) tööriistadega.
+- `suomen-oikoluku`: soome keele oikoluku Kotuse allikate ja valikulise Voikko kontrolliga.
 
 ## Litsents
 
