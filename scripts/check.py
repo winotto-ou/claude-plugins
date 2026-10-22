@@ -10,11 +10,10 @@ from pathlib import Path
 
 ALLOWED_KEYS = {"name", "description", "license", "compatibility", "metadata", "allowed-tools"}
 URL_RE = re.compile(r"^https://mcp\.winotto\.com/[a-z-]+/mcp$")
-SECRET_RE = re.compile(r"(?i)(api[_-]?key|secret|password)\s*[:=]\s*\S{8,}")
-FORBIDDEN_STRINGS = ["/home/", "/mnt/c/", "@gmail.com"]
+SECRET_RE = re.compile(r"(?i)(api[_-]?ke" + r"y|sec" + r"ret|pass" + r"word)\s*[:=]\s*\S{8,}")
+# Built by concatenation so this file does not trip its own scan.
+FORBIDDEN_STRINGS = ["/ho" + "me/", "/mnt" + "/c/", "@gmail" + ".com"]
 SKIP_DIRS = {".git", "__pycache__", ".pytest_cache", "dist"}
-# The checker and its tests necessarily mention the patterns they look for.
-SELF_FILES = {"scripts/check.py", "scripts/test_check.py"}
 MCP_PREFIX = "mcp" + "__"
 PLUGIN_ROOT_VAR = "${CLAUDE_PLUGIN_ROOT}"
 
@@ -90,6 +89,7 @@ def check_manifests(root, errors):
 def check_mcp(plugin_dir, root, errors):
     path = plugin_dir / ".mcp.json"
     if not path.is_file():
+        errors.append(f"{path.relative_to(root)}: missing (the plugin must ship its connectors)")
         return
     data = load_json(path, errors, root)
     if not isinstance(data, dict):
@@ -152,7 +152,7 @@ def check_leaks(root, errors):
         if not f.is_file():
             continue
         rel = f.relative_to(root)
-        if SKIP_DIRS & set(rel.parts) or rel.as_posix() in SELF_FILES:
+        if SKIP_DIRS & set(rel.parts):
             continue
         try:
             text = f.read_text(encoding="utf-8")

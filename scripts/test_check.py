@@ -94,6 +94,10 @@ class CheckTest(unittest.TestCase):
                        lambda d: d["mcpServers"]["jw"].update(type="sse"))
         self.expect_error("type")
 
+    def test_rule2_missing_mcp_json(self):
+        (self.plugin / ".mcp.json").unlink()
+        self.expect_error(".mcp.json")
+
     # Rule 3
     def test_rule3_no_frontmatter(self):
         self.add_skill("no frontmatter\n")
@@ -138,8 +142,13 @@ class CheckTest(unittest.TestCase):
                 self.expect_error("leak.txt")
                 f.unlink()
 
+    def test_rule6_leak_in_check_script_itself(self):
+        with open(self.root / "scripts" / "check.py", "a", encoding="utf-8") as f:
+            f.write("\n# /ho" + "me/someone\n")
+        self.expect_error("check.py")
+
     def test_rule6_secret(self):
-        (self.root / "leak.txt").write_text("api_key = abcdefgh12345", encoding="utf-8")
+        (self.root / "leak.txt").write_text("api_" + "key = abcdefgh12345", encoding="utf-8")
         self.expect_error("leak.txt")
 
 
