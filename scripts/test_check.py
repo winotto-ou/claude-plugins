@@ -55,9 +55,9 @@ class CheckTest(unittest.TestCase):
         code, out = run_check(self.root)
         self.assertEqual(code, 0, out)
 
-    def test_three_skills_present(self):
+    def test_four_skills_present(self):
         skills = {d.name for d in (REPO / "plugins" / "winotto" / "skills").iterdir() if d.is_dir()}
-        self.assertEqual({"jw-search", "estonian-proofreading", "suomen-oikoluku"}, skills)
+        self.assertEqual({"jw-search", "estonian-proofreading", "suomen-oikoluku", "ariregister"}, skills)
 
     # Rule 1
     def test_rule1_broken_json(self):

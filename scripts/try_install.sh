@@ -20,12 +20,12 @@ printf '%s\n%s\n' "$list_out" "$details_out"
 fail() { echo "FAIL: $*" >&2; exit 1; }
 
 grep -q 'winotto@winotto-ou' <<<"$list_out" || fail "plugin missing from list"
-grep -qE 'Skills \(3\)' <<<"$details_out" || fail "expected 3 skills"
-for s in estonian-proofreading jw-search suomen-oikoluku; do
+grep -qE 'Skills \(4\)' <<<"$details_out" || fail "expected 4 skills"
+for s in estonian-proofreading jw-search suomen-oikoluku ariregister; do
   grep -q "$s" <<<"$details_out" || fail "skill $s missing"
 done
-grep -qE 'MCP servers \(4\)' <<<"$details_out" || fail "expected 4 MCP servers"
-for m in jw bible-lex et-proof email; do
+grep -qE 'MCP servers \(5\)' <<<"$details_out" || fail "expected 5 MCP servers"
+for m in jw bible-lex et-proof email arireg; do
   grep -E 'MCP servers' <<<"$details_out" | grep -qE "(^|[ ,])$m([ ,]|$)" || fail "MCP server $m missing"
 done
 
@@ -44,4 +44,4 @@ assert ".claude-plugin/plugin.json" in names, "plugin.json not at zip root"
 print(f"zip: {out} ({len(names)} files)")
 PY
 
-echo "OK install winotto@winotto-ou: 3 skills, 4 MCP servers"
+echo "OK install winotto@winotto-ou: 4 skills, 5 MCP servers"

@@ -1,6 +1,6 @@
 # Winotto Claude'i pluginad
 
-Winotto OÜ Claude'i pluginate kogu (marketplace `winotto-ou`). Praegu on siin üks plugin, `winotto`: jw.org otsing, Piibli algkeeled, Eesti keelenõu ja Postkast ühendustena ning eesti ja soome keele toimetamise skillid. Ühendused töötavad serveris https://mcp.winotto.com.
+Winotto OÜ Claude'i pluginate kogu (marketplace `winotto-ou`). Praegu on siin üks plugin, `winotto`: jw.org otsing, Piibli algkeeled, Eesti keelenõu, Postkast ja Äriregister ühendustena ning eesti ja soome keele toimetamise skillid. Ühendused töötavad serveris https://mcp.winotto.com.
 
 ## Paigaldus claude.ai-s
 

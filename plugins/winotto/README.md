@@ -1,6 +1,6 @@
 # winotto
 
-Plugin `winotto@winotto-ou`: neli ühendust ja kolm skilli (jw.org otsing, eesti ja soome keele toimetamine).
+Plugin `winotto@winotto-ou`: viis ühendust ja neli skilli (jw.org otsing, Äriregistri andmed, eesti ja soome keele toimetamine).
 
 ## Paigaldus
 
@@ -18,6 +18,7 @@ Või kahes sammus: `/plugin marketplace add winotto-ou/claude-plugins` ja `/plug
 - `bible-lex`: Piibli algkeeled (heebrea, aramea, kreeka) sõna kaupa (https://mcp.winotto.com/bible-lex/mcp).
 - `et-proof`: Eesti keelenõu, EKI andmed ja Ekilex (https://mcp.winotto.com/et-proof/mcp).
 - `email`: Postkast (https://mcp.winotto.com/email/mcp).
+- `arireg`: Äriregister, ettevõtted, juhatuse liikmed ja majandusaasta aruanded äriregistri avaandmetest (https://mcp.winotto.com/arireg/mcp).
 
 Ühendus „Kõik ühes” (`/mcp`) ei kuulu pluginasse, see lisatakse portaalist.
 
@@ -25,6 +26,7 @@ Või kahes sammus: `/plugin marketplace add winotto-ou/claude-plugins` ja `/plug
 
 - `jw-search`: Piibli salmide, jw.org sisu, artiklite ja videote subtiitrite otsing `jw` ühenduse tööriistadega.
 - `estonian-proofreading`: eesti teksti korrektuur ja keelenõu `et-proof` ühenduse (EKI andmed, Ekilex) tööriistadega.
+- `ariregister`: Eesti ettevõtete, registrikoodide ja juhatuse liikmete päringud `arireg` ühenduse tööriistadega.
 - `suomen-oikoluku`: soome keele oikoluku Kotuse allikate ja valikulise Voikko kontrolliga.
 
 ## Litsents
