@@ -9,10 +9,15 @@ import sys
 from pathlib import Path
 
 ALLOWED_KEYS = {"name", "description", "license", "compatibility", "metadata", "allowed-tools"}
-URL_RE = re.compile(r"^https://mcp\.winotto\.com/[a-z-]+/mcp$")
-SECRET_RE = re.compile(r"(?i)(api[_-]?ke" + r"y|sec" + r"ret|pass" + r"word)\s*[:=]\s*\S{8,}")
+URL_RE = re.compile(r"https://mcp\.winotto\.com/[a-z-]+/mcp")
+SECRET_RE = re.compile(
+    r"(?i)(api[_-]?ke" + r"y|sec" + r"ret|pass" + r"word)[\"']?\s*[:=]\s*[\"']?\S{8,}"
+    r"|Bear" + r"er\s+[A-Za-z0-9._~+/=-]{16,}"
+    r"|gh" + r"p_[A-Za-z0-9]{20,}"
+    r"|GOCS" + r"PX-[A-Za-z0-9_-]{10,}"
+)
 # Built by concatenation so this file does not trip its own scan.
-FORBIDDEN_STRINGS = ["/ho" + "me/", "/mnt" + "/c/", "@gmail" + ".com"]
+FORBIDDEN_STRINGS = ["/ho" + "me/", "/mnt" + "/c/", "@gmail" + ".com", "c:" + "\\users" + "\\"]
 SKIP_DIRS = {".git", "__pycache__", ".pytest_cache", "dist"}
 MCP_PREFIX = "mcp" + "__"
 PLUGIN_ROOT_VAR = "${CLAUDE_PLUGIN_ROOT}"
@@ -67,6 +72,8 @@ def check_manifests(root, errors):
         for p in mp.get("plugins", []):
             src = p.get("source") if isinstance(p, dict) else None
             label = f"marketplace.json plugin {p.get('name') if isinstance(p, dict) else p!r}"
+            if isinstance(p, dict) and "mcpServers" in p:
+                errors.append(f"{label}: inline mcpServers is not allowed (use .mcp.json)")
             if not isinstance(src, str) or not src.startswith("./"):
                 errors.append(f"{label}: source must be a string starting with './'")
                 continue
@@ -81,7 +88,9 @@ def check_manifests(root, errors):
             if not pj.is_file():
                 errors.append(f"{label}: {src}/.claude-plugin/plugin.json missing")
             else:
-                load_json(pj, errors, root)
+                pdata = load_json(pj, errors, root)
+                if isinstance(pdata, dict) and "mcpServers" in pdata:
+                    errors.append(f"{pj.relative_to(root)}: inline mcpServers is not allowed (use .mcp.json)")
             plugin_dirs.append(d)
     return plugin_dirs
 
@@ -105,7 +114,7 @@ def check_mcp(plugin_dir, root, errors):
             continue
         if srv["type"] != "http":
             errors.append(f"{rel}: server '{name}' type must be 'http'")
-        if not isinstance(srv["url"], str) or not URL_RE.match(srv["url"]):
+        if not isinstance(srv["url"], str) or not URL_RE.fullmatch(srv["url"]):
             errors.append(f"{rel}: server '{name}' url must match {URL_RE.pattern}")
 
 
@@ -126,7 +135,7 @@ def check_skills(plugin_dir, root, errors):
         if fm.get("name") != d.name:
             errors.append(f"{rel}: name {fm.get('name')!r} must equal folder name {d.name!r}")
         desc = fm.get("description", "")
-        if not desc:
+        if not desc.strip().strip("\"'").strip():
             errors.append(f"{rel}: description is empty")
         elif len(desc) > 1024:
             errors.append(f"{rel}: description is {len(desc)} chars, limit is 1024")
@@ -158,8 +167,9 @@ def check_leaks(root, errors):
             text = f.read_text(encoding="utf-8")
         except (UnicodeDecodeError, OSError):
             continue
+        low = text.lower()
         for s in FORBIDDEN_STRINGS:
-            if s in text:
+            if s in low:
                 errors.append(f"{rel}: contains forbidden text {s!r}")
         if SECRET_RE.search(text):
             errors.append(f"{rel}: looks like it contains a secret")

@@ -155,6 +155,45 @@ class CheckTest(unittest.TestCase):
         (self.root / "leak.txt").write_text("api_" + "key = abcdefgh12345", encoding="utf-8")
         self.expect_error("leak.txt")
 
+    def test_url_trailing_newline_rejected(self):
+        self.edit_json(self.plugin / ".mcp.json",
+                       lambda d: d["mcpServers"]["jw"].update(url="https://mcp.winotto.com/jw/mcp\n"))
+        self.expect_error("url")
+
+    def test_secret_json_style(self):
+        (self.root / "leak.txt").write_text('{"api_' + 'key": "abcdefgh1234"}', encoding="utf-8")
+        self.expect_error("leak.txt")
+
+    def test_secret_token_shapes(self):
+        for bad in ["Bear" + "er " + "a" * 16, "gh" + "p_" + "a" * 20, "GOCS" + "PX-" + "a" * 10]:
+            with self.subTest(bad=bad):
+                f = self.root / "leak.txt"
+                f.write_text(bad, encoding="utf-8")
+                self.expect_error("leak.txt")
+                f.unlink()
+
+    def test_forbidden_case_insensitive_and_windows_path(self):
+        for bad in ["/HO" + "ME/x", "A@GMAIL" + ".COM", "C:" + "\\Users" + "\\x", "c:" + "\\USERS" + "\\x"]:
+            with self.subTest(bad=bad):
+                f = self.root / "leak.txt"
+                f.write_text(bad, encoding="utf-8")
+                self.expect_error("leak.txt")
+                f.unlink()
+
+    def test_inline_mcpservers_in_plugin_json(self):
+        self.edit_json(self.plugin / ".claude-plugin" / "plugin.json",
+                       lambda d: d.update(mcpServers={}))
+        self.expect_error("mcpServers")
+
+    def test_inline_mcpservers_in_marketplace_entry(self):
+        self.edit_json(self.root / ".claude-plugin" / "marketplace.json",
+                       lambda d: d["plugins"][0].update(mcpServers={}))
+        self.expect_error("mcpServers")
+
+    def test_description_only_quotes(self):
+        self.add_skill("---\nname: demo\ndescription: \"\"\n---\n")
+        self.expect_error("description is empty")
+
 
 if __name__ == "__main__":
     unittest.main()

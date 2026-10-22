@@ -17,7 +17,7 @@ Winotto OÜ Claude'i pluginate kogu (marketplace `winotto-ou`). Praegu on siin �
 
 ## Free-plaan
 
-Free-plaanil saab lisada ainult ühe ühenduse. Lisa pluginast skillid, aga ühendusi ära lisa pluginast. Võta ühendused portaali lehelt „Tasuta Claude? Lisa kõik ühe ühendusena →”.
+Kui kasutad Free-plaani (seal saab lisada ainult ühe ühenduse), lisa plugin skillide jaoks, aga ära vajuta pluginas ühenduste juures „Connect”; lisa tööriistad portaalist reaga „Tasuta Claude? Lisa kõik ühe ühendusena →”.
 
 ## Ühenduste kasutamine
 
@@ -25,12 +25,12 @@ Free-plaanil saab lisada ainult ühe ühenduse. Lisa pluginast skillid, aga ühe
 
 ## Märkus privaatse repo kohta
 
-Kuni see repo on privaatne, vajab claude.ai selle lugemiseks Claude'i GitHubi rakendust ja Claude Code juurdepääsu GitHubile (näiteks sisselogitud `gh` või GitHubi tunnus).
+Kuni see repo on privaatne, vajab claude.ai selle lugemiseks Claude'i GitHubi rakendust ja Claude Code juurdepääsu GitHubile (näiteks sisselogitud `gh` või GitHubi tunnus). Kuni repo on privaatne, saavad marketplace'i lisada ainult inimesed, kellel on repole juurdepääs.
 
 ## Kontroll
 
-`python3 scripts/check.py` kontrollib manifeste, skille ja seda, et repos ei oleks saladusi. Testid: `python3 scripts/test_check.py`.
+`python3 scripts/check.py` kontrollib manifeste, skille ja seda, et repos ei oleks saladusi. Testid: `python3 scripts/test_check.py`. Kohalik paigalduskontroll ajutise seadistuskaustaga (ei puuduta sinu `~/.claude`): `bash scripts/try_install.sh`.
 
 ## Litsents
 
-MIT, vt `LICENSE`. Soome skilli sisu kohta vt `plugins/winotto/README.md`.
+MIT, vt `LICENSE`. MIT katab repo enda failid; Kotuse materjalist tuletatud failid, mis on loetletud failis `plugins/winotto/README.md`, on litsentsi CC BY-NC-ND 4.0 all.

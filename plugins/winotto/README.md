@@ -1,6 +1,6 @@
 # winotto
 
-Plugin `winotto@winotto-ou`: neli ühendust ja eesti ning soome keele skillid.
+Plugin `winotto@winotto-ou`: neli ühendust ja kolm skilli (jw.org otsing, eesti ja soome keele toimetamine).
 
 ## Paigaldus
 
@@ -29,4 +29,8 @@ Või kahes sammus: `/plugin marketplace add winotto-ou/claude-plugins` ja `/plug
 
 ## Litsents
 
-Skillifailid on MIT-litsentsiga (vt repo `LICENSE`). Soome skilli sisu sisaldab Kotimaisten kielten keskuse (Kotus) materjali litsentsi CC BY-NC-ND 4.0 all; see sisu ei kuulu MIT-litsentsi alla.
+Skillifailid on MIT-litsentsiga (vt repo `LICENSE`). Järgmised failid sisaldavad Kotimaisten kielten keskuse (Kotus, https://www.kotus.fi/) materjali ja on litsentsi [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) all; need ei kuulu MIT-litsentsi alla:
+
+- `skills/suomen-oikoluku/references/ohjepankki-index.md`
+- tsiteeritud näited failis `skills/suomen-oikoluku/references/pikaohje.md`
+- `skills/suomen-oikoluku/examples/*.txt`
