@@ -12,6 +12,10 @@
       "type": "http",
       "url": "https://mcp.winotto.com/et-proof/mcp"
     },
+    "fi-proof": {
+      "type": "http",
+      "url": "https://mcp.winotto.com/fi-proof/mcp"
+    },
     "email": {
       "type": "http",
       "url": "https://mcp.winotto.com/email/mcp"

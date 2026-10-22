@@ -1,6 +1,6 @@
 # winotto
 
-Plugin `winotto@winotto-ou`: viis ühendust ja neli skilli (jw.org otsing, Äriregistri andmed, eesti ja soome keele toimetamine).
+Plugin `winotto@winotto-ou`: kuus ühendust ja neli skilli (jw.org otsing, Äriregistri andmed, eesti ja soome keele toimetamine).
 
 ## Paigaldus
 
@@ -17,6 +17,7 @@ Või kahes sammus: `/plugin marketplace add winotto-ou/claude-plugins` ja `/plug
 - `jw`: jw.org otsing, Piibli salmid, artiklid ja videote subtiitrid (https://mcp.winotto.com/jw/mcp).
 - `bible-lex`: Piibli algkeeled (heebrea, aramea, kreeka) sõna kaupa (https://mcp.winotto.com/bible-lex/mcp).
 - `et-proof`: Eesti keelenõu, EKI andmed ja Ekilex (https://mcp.winotto.com/et-proof/mcp).
+- `fi-proof`: Soome keelenõu, Voikko õigekirjakontroll ja Kielitoimiston ohjepankki (https://mcp.winotto.com/fi-proof/mcp).
 - `email`: Postkast (https://mcp.winotto.com/email/mcp).
 - `arireg`: Äriregister, ettevõtted, juhatuse liikmed ja majandusaasta aruanded äriregistri avaandmetest (https://mcp.winotto.com/arireg/mcp).
 
