@@ -2,6 +2,14 @@
 
 Plugin `winotto@winotto-ou`: neli ühendust ja eesti ning soome keele skillid.
 
+## Paigaldus
+
+```
+/plugin install winotto --marketplace winotto-ou/claude-plugins
+```
+
+Või kahes sammus: `/plugin marketplace add winotto-ou/claude-plugins` ja `/plugin install winotto@winotto-ou`.
+
 ## Ühendused
 
 - `jw`: jw.org otsing, Piibli salmid, artiklid ja videote subtiitrid (https://mcp.winotto.com/jw/mcp).
