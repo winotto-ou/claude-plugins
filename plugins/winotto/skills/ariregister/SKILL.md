@@ -23,7 +23,7 @@ The tools may carry a prefix depending on how they were added: `ariregister_sear
 
 - Company by name: `search_companies` with the name, pick the right company from the hits (ask the user if several fit), then `get_company` with its registry code.
 - Company by registry code: `get_company` directly, or `search_companies` with the 8 digits if you are unsure the code is valid.
-- Companies in a field or place ("IT-ettevõtted Tartus"): `search_companies` with `activity` (prefer an EMTAK code when you know it; words match only the activity names the companies reported) and `location`. Give the total the tool reports; the list is a sample ordered by name, not the biggest or best companies. Use `get_company` only for the companies the user wants to know more about.
+- Companies in a field or place ("IT-ettevõtted Tartus"): `search_companies` with `activity` (prefer an EMTAK code when you know it; words match only the activity names the companies reported) and `location`. Give the total the tool reports; the list is a sample ordered by name, not the biggest or best companies. Use `get_company` only for the companies the user wants to know more about. If the tool answers that the search data is being updated („otsinguandmed uuenevad”), say so and offer a search by name; it does not mean that no such company exists.
 - Person: `find_person` with the full name (add `role` when the user asks only for board membership or ownership), then `get_company` for the companies the user wants to know more about.
 - Several searches in one answer are fine, but do not walk the register: answer what was asked.
 
