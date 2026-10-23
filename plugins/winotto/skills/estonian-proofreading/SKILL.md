@@ -7,7 +7,7 @@ description: "Use when proofreading, editing or checking Estonian text — jw.or
 
 ## Overview
 
-The „Eesti keelenõu” connector (et-proof) exposes EKI's own data: Ekilex (ÕS, EKI ühendsõnastik 2026, term bases) and the EKI teatmik with the keelenõuvakk questions. Your job is to find errors **that EKI documents** and hand the translator a decision, not a rewrite.
+The „Eesti keelenõu” connector (et-proof) exposes EKI's own data: Ekilex (ÕS, EKI ühendsõnastik 2026, term bases), the EKI teatmik with the keelenõuvakk questions, and the Eesti keele käsiraamat (EKI 2020), which treats grammar and syntax — commas above all — more deeply than the teatmik. Your job is to find errors **that EKI documents** and hand the translator a decision, not a rewrite.
 
 **Core principle: the tools prove errors. They never clear text.** A tool that returns nothing means you have no evidence — not that the sentence is fine.
 
@@ -25,9 +25,9 @@ The tools may carry a prefix depending on how they were added. In the one-connec
 | `lookup(word, dataset=None)` | meanings, value states and datasets (`eki`, `usu`, `ust`, `esterm`; codes from `datasets`) |
 | `lemmatize(form)` | the base form of an unfamiliar form |
 | `forms(word, form=None, all_forms=False)` | the key inflected forms (about ten by default), several paradigms side by side |
-| `teatmik_search(query, kind="koik", chapter=None)` | rules in the EKI teatmik; `kind`: `teatmik` (rule articles), `keelenouvakk` (frequently asked questions), `koik` (both) |
-| `teatmik_article(ref, offset=0)` | read the rule; long articles come in parts |
-| `teatmik_chapters()` | chapters with slugs, for `chapter` |
+| `teatmik_search(query, kind="koik", chapter=None)` | rules in the EKI teatmik and the Eesti keele käsiraamat; `kind`: `teatmik` (rule articles), `keelenouvakk` (frequently asked questions), `kasiraamat` (the handbook: grammar, syntax, comma rules), `koik` (all three, mixed) |
+| `teatmik_article(ref, offset=0)` | read the rule — a teatmik slug, or a handbook section code such as `SÜ 106`; long texts come in parts |
+| `teatmik_chapters()` | teatmik chapters with slugs, handbook chapters with codes (`O`, `M`, `SM`, `SÜ`, `L`), for `chapter` |
 
 **Make independent calls in parallel**: several `recommendation`, `check_form` or `teatmik_search` calls for different words or rules in one turn, not one by one.
 
@@ -62,6 +62,8 @@ Query with **the name of the rule**, not with a question. An exact title match r
 
 Use `kind: "teatmik"` when you need the rule article, `kind: "keelenouvakk"` for question-shaped topics („Kuidas käänata tänavanimesid?”), `chapter` (from `teatmik_chapters`) to stay inside one area. **Scan the whole hit list**: the general rule article is not always first.
 
+For commas and sentence structure, also query the handbook: `kind: "kasiraamat"` (or `chapter: "süntaks"`). Its sections are numbered — SÜ 106 (koma mitme määruse korral), SÜ 125 (järellisand), SÜ 127 (lisanditaolised määrused), O 57 (koma ülevaade) — and `teatmik_article` opens one by code.
+
 ## Reading articles: truncation and budget
 
 - `teatmik_article` returns about 6000 characters per call. A longer article ends with **`[jätk: offset=N]`**. Never quote a rule as complete when that marker is there and the clause you need is not yet in view: call again with `offset: N`.
@@ -79,7 +81,7 @@ Use `kind: "teatmik"` when you need the rule article, `kind: "keelenouvakk"` for
 | A form you cannot place, or that looks off | `check_form` (with `word` when you know the base word) |
 | Two words that could be one, or one that could be two | `teatmik_search` `kokku- ja lahkukirjutamine` |
 | A capital on a common noun, or a lowercase name | `teatmik_search` `algustäht` |
-| Comma near *et, mis, kui, ja, kuid*; a kiil; a lauselühend | `teatmik_search` `koma` |
+| Comma near *et, mis, kui, ja, kuid*; a kiil; a lauselühend | `teatmik_search` `koma` (`koik` already includes the handbook; `kind: "kasiraamat"` for syntax sections only) |
 | Numbers, dates, percentages, abbreviations | `teatmik_search` `arvud` / `lühendid` |
 | `poolt`-passive, `läbi viima`, `omab`, `antud`, `seoses`, `tulenevalt` | `teatmik_search` `kantseliit` |
 | A term of the subject field | `lookup` with `dataset` (`usu`, `ust`, `esterm`) |
@@ -101,7 +103,7 @@ The same shape as the Finnish proofreading skill. Headers in the answer's langua
 - **Koht**: paragraph and sentence („2. lõik, 1. lause”), or the line from `scan_text`.
 - **Algne → Parandus**: only the faulty phrase and its correction, not the whole sentence.
 - **Viga/soovitus**: start with **Viga** (a documented rule is broken) or **Soovitus** (EKI prefers another wording; style), then the topic and one short reason. Uncertain cases: „Ebaselge · … — Ekilexis vastuoluline, vajab inimotsust”.
-- **Allikas is required**: the teatmik article title with the link, or the Sõnaveeb link and dataset the tool returned. No source, no row — delete the finding instead.
+- **Allikas is required**: the teatmik article title with the link; for the handbook, the source line and page link the tool returned (e.g. „Eesti keele käsiraamat (EKI 2020), SÜ 106, lk 469–470 – <link>”); or the Sõnaveeb link and dataset the tool returned. No source, no row — delete the finding instead.
 - After the table, one line: which sentences you checked and found nothing in, and what `scan_text` left unchecked, if anything.
 - **Do not return a rewritten text** unless the user asks for one. The translator decides; you supply evidence.
 
