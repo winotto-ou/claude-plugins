@@ -14,7 +14,7 @@ Või kahes sammus: `/plugin marketplace add winotto-ou/claude-plugins` ja `/plug
 
 ## Ühendused
 
-- `jw`: jw.org otsing, Piibli salmid, artiklid ja videote subtiitrid (https://mcp.winotto.com/jw/mcp).
+- `jw`: jw.org otsing, Piibli salmid ja õppepiibli märkused, artiklid ja videote subtiitrid (https://mcp.winotto.com/jw/mcp).
 - `bible-lex`: Piibli algkeeled (heebrea, aramea, kreeka) sõna kaupa (https://mcp.winotto.com/bible-lex/mcp).
 - `et-proof`: Eesti keelenõu, EKI andmed ja Ekilex (https://mcp.winotto.com/et-proof/mcp).
 - `fi-proof`: Soome keelenõu, Voikko õigekirjakontroll ja Kielitoimiston ohjepankki (https://mcp.winotto.com/fi-proof/mcp).
@@ -25,7 +25,7 @@ Või kahes sammus: `/plugin marketplace add winotto-ou/claude-plugins` ja `/plug
 
 ## Skillid
 
-- `jw-search`: Piibli salmid, jw.org sisu, artiklid, päevatekst, koosoleku töövihik ja videote subtiitrite otsing `jw` ühenduse tööriistadega.
+- `jw-search`: Piibli salmid ja õppepiibli märkused, jw.org sisu, artiklid, päevatekst, koosoleku töövihik ja videote subtiitrite otsing `jw` ühenduse tööriistadega.
 - `piibli-algkeeled`: salmi heebrea, aramea ja kreeka sõnad, sõnaraamatu artiklid ja esinemised `bible-lex` ühenduse tööriistadega, koos Uue maailma tõlke tekstiga `jw` ühendusest.
 - `estonian-proofreading`: eesti teksti korrektuur ja keelenõu `et-proof` ühenduse (EKI andmed, Ekilex) tööriistadega.
 - `suomen-oikoluku`: soome keele oikoluku Kotuse allikate järgi, `fi-proof` ühenduse tööriistadega (Voikko, Kielitoimiston ohjepankki) või ilma nendeta.

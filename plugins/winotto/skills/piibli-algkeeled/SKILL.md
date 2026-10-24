@@ -1,11 +1,11 @@
 ---
 name: piibli-algkeeled
-description: "Use for questions about the original languages of the Bible (Hebrew, Aramaic, Greek) with the Piibli algkeeled tools: the original words of a verse word by word (interlinear), what a Hebrew or Greek word means, its Strong's number, where else it occurs and how it is rendered, which original word stands behind a translation word, and related passages. TRIGGER on: 'algkeel', 'algtekst', 'kreeka sõna', 'heebrea sõna', 'aramea', 'Strongi number', 'mida tähendab originaalis', 'mis sõna on originaalis', 'interlineaar', 'sõna-sõnalt', 'kus veel esineb', 'ristviited', 'original language', 'Greek word', 'Hebrew word', 'Strong's number', 'interlinear', 'what does it mean in the original', or a Hebrew or Greek word in the message (חֶסֶד, ἀγάπη)."
+description: "Use for questions about the original languages of the Bible (Hebrew, Aramaic, Greek), starting from the jw.org study Bible notes and then the Piibli algkeeled tools: the original words of a verse word by word (interlinear), what a Hebrew or Greek word means, its Strong's number, where else it occurs and how it is rendered, which original word stands behind a translation word, and related passages. TRIGGER on: 'algkeel', 'algtekst', 'kreeka sõna', 'heebrea sõna', 'aramea', 'Strongi number', 'mida tähendab originaalis', 'mis sõna on originaalis', 'interlineaar', 'sõna-sõnalt', 'kus veel esineb', 'ristviited', 'original language', 'Greek word', 'Hebrew word', 'Strong's number', 'interlinear', 'what does it mean in the original', or a Hebrew or Greek word in the message (חֶסֶד, ἀγάπη)."
 ---
 
 # Bible original languages (Piibli algkeeled)
 
-The „Piibli algkeeled” connector gives the Hebrew, Aramaic and Greek text word by word (STEPBible data), the Brown-Driver-Briggs and Abbott-Smith dictionaries, occurrences and cross-references. It works together with the jw.org tools (jw-search skill), which give the verse in the New World Translation.
+The „Piibli algkeeled” connector gives the Hebrew, Aramaic and Greek text word by word (STEPBible data), the Brown-Driver-Briggs and Abbott-Smith dictionaries, occurrences and cross-references. It works together with the jw.org tools (jw-search skill), which give the verse in the New World Translation and the study Bible notes.
 
 ## Tool names
 
@@ -14,6 +14,8 @@ The tools may carry a prefix depending on how they were added. In the one-connec
 ## Ground rules
 
 - **The New World Translation text comes first, and only from the jw tool.** Show the verse with `get_bible_verse` (or `get_bible_chapter`) and its wol.jw.org link before the original words. If the jw tool is not available, give only the link the interlinear result contains and do not quote the verse from memory.
+- **Study notes first.** Before the word data, read the jw.org study Bible notes on the verse with `get_study_notes` (in „Kõik ühes” `jw_get_study_notes`). They often explain the very Hebrew or Greek word and are jw.org's current explanation. Then use the `algkeeled_` tools for the word data: forms, Strong's numbers, dictionary meanings, occurrences. When the notes are in English (the language has none on that verse), explain them in the user's language. If `get_study_notes` is not available (the jw.org connector is not connected), say so and continue with the word data.
+- **When a study note and a dictionary differ,** present the study note's view as the organisation's current explanation and the lexicon as the dictionary's view. The lexicon never overrules the note.
 - **English glosses are helpers, not a translation.** The word-by-word English renderings and dictionary glosses show what a word can mean; they never replace or correct the New World Translation. Do not present a gloss as „the right translation” or prefer it over the NWT wording.
 - **Dictionaries are the dictionary's view.** BDB and Abbott-Smith are 19th–20th century scholarly works in English. Explain them in the user's language and say that this is what the dictionary says, not what jw.org teaches. Draw no doctrinal conclusions from a lexicon entry; for what the Bible teaches, point to jw.org articles (jw-search).
 - **Cite.** Give the jw.org link of each verse and the source line the tool returns (STEPBible, the dictionary, OpenBible.info).
@@ -35,10 +37,11 @@ References can be given in Estonian, English or OSIS form. One call takes one ve
 ## Workflow
 
 1. **Verse first.** `get_bible_verse` for the NWT wording and link.
-2. **Original words.** `interlinear` on the verse. For a word study use `content_only: true`; keep `detail` compact unless the user asks about grammar (tense, case, voice).
-3. **Meaning.** `lexicon` with the Strong's number from the interlinear (not the lemma, when you have the number). If you searched by lemma and the tool lists other candidates („Kas mõtlesid: …”), check that you have the right word. When the article is cut (`truncated`), call with `source: "full"` only if the user needs the rest.
-4. **Other occurrences.** `occurrences` with the same number; narrow with `book` or `testament` for frequent words. The per-book counts come on the first page; page on with `offset` only if asked.
-5. **Answer.** NWT verse with link → the relevant original words as a table → what the dictionary says (marked as the dictionary's view) → a few other occurrences with their NWT wording when they help.
+2. **Study notes.** `get_study_notes` on the verse (the `get_bible_verse` result already shows a short version). Note what it says about the word and keep its link.
+3. **Original words.** `interlinear` on the verse. For a word study use `content_only: true`; keep `detail` compact unless the user asks about grammar (tense, case, voice).
+4. **Meaning.** `lexicon` with the Strong's number from the interlinear (not the lemma, when you have the number). If you searched by lemma and the tool lists other candidates („Kas mõtlesid: …”), check that you have the right word. When the article is cut (`truncated`), call with `source: "full"` only if the user needs the rest.
+5. **Other occurrences.** `occurrences` with the same number; narrow with `book` or `testament` for frequent words. The per-book counts come on the first page; page on with `offset` only if asked.
+6. **Answer.** NWT verse with link → what the study note says about the word, with its link → the relevant original words as a table → what the dictionary says (marked as the dictionary's view) → a few other occurrences with their NWT wording when they help.
 
 Original words as a table:
 
@@ -57,6 +60,7 @@ Original words as a table:
 | Mistake | Fix |
 |---|---|
 | Quoting the verse from memory or from the English gloss | `get_bible_verse`, then the original words. |
+| Explaining a word from BDB or Abbott-Smith without reading the study note | `get_study_notes` first: the note is jw.org's explanation, the lexicon the dictionary's view. |
 | „Originaalis tähendab see tegelikult …” as a correction of the NWT | Glosses are helpers; show them next to the NWT text, do not rank them above it. |
 | A teaching drawn from BDB or Abbott-Smith | Say what the dictionary says and point to jw.org for the teaching. |
 | One call for „Joh 3:16; Rm 5:8” | Separate calls, one book each. |
