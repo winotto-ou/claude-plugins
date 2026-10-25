@@ -16,7 +16,7 @@ All sources below are published or maintained by **Kotimaisten kielten keskus (K
 
 - URL: https://www.kielitoimistonsanakirja.fi/ — direct word link `https://www.kielitoimistonsanakirja.fi/#/<sana>`
 - What: the official dictionary of contemporary standard Finnish, 100 000+ headwords, with spelling, inflection type, meaning, usage examples and style labels (ark., vanh., halv.). Free.
-- Access: single-page app; its search API requires a session token and is not openly usable. Use it by linking, or open it in a browser tool and read the entry. Do not claim to have checked the dictionary unless you actually read the entry.
+- Access: single-page app; its search API requires a session token and is not openly usable, and its terms of use forbid copying the dictionary (the whole or a substantial part), so no tool reads it. Use it by linking, or open it in a browser tool and read the entry. Do not claim to have checked the dictionary unless you actually read the entry.
 - Use for: does this word exist in standard Finnish, how is it spelled, which inflection, is it colloquial.
 
 ## 3. Voikko

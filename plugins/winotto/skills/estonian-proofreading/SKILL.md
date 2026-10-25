@@ -20,6 +20,7 @@ The tools may carry a prefix depending on how they were added. In the one-connec
 | Tool | Use for |
 |---|---|
 | `scan_text(text, max_words=400)` | **first pass over a whole text**: returns only unknown forms, words with an EKI recommendation or warning value state, and words with several inflection types, each with line/column and a Sõnaveeb link |
+| `check_commas(text, max_sentences=500, offset=0)` | **commas, over a whole text**: likely missing commas (subordinate clauses, „nii et”, „enne kui”, aga/kuid/vaid, kiil) and clearly superfluous ones, in two sections, „Kontrolli kindlasti” and „Kaalu”, each with line, place, reason and handbook section; it never rewrites. A longer text ends with `[jätk: offset=N]`: call again with that `offset` |
 | `check_form(form, word=None)` | is this one form real, and is it in this word's paradigm („lähsin või läksin”) |
 | `recommendation(word)` | does EKI advise against a word or prefer another |
 | `lookup(word, dataset=None)` | meanings, value states and datasets (`eki`, `usu`, `ust`, `esterm`; codes from `datasets`) |
@@ -37,7 +38,7 @@ This table exists because the natural reading of these outputs is wrong.
 
 | Tool answer | Proves | Does NOT prove |
 |---|---|---|
-| `scan_text` does not list a word | Ekilex knows the form and has no warning for it | **Nothing about correctness.** It does not see commas, kokku-lahku, capitals, wrong word choice or style. |
+| `scan_text` does not list a word | Ekilex knows the form and has no warning for it | **Nothing about correctness.** It does not see commas (that is `check_commas`), kokku-lahku, capitals, wrong word choice or style. |
 | `scan_text` → „tundmatu vorm” | Strong signal of a typo, a non-word or a name | — |
 | `recommendation` → „soovitust pole” | Ekilex carries no warning flag for that word | **Nothing about correctness.** `hetkel`, `kompetents`, `läbi viima` all return this. Style and kantseliit live in the teatmik, not here. |
 | `recommendation` → EKI soovitus text | EKI has written about the word | That it is an error. EKI often says the opposite („üldkeele sõnade tähendusi ei normita”). Read the text before reporting. |
@@ -48,6 +49,9 @@ This table exists because the natural reading of these outputs is wrong.
 | `forms` / `check_form` / `scan_text` → several muuttüüpi | The paradigm is ambiguous in Ekilex (`tekkima` lists both `tekib` and `tekkib`) | Do **not** call a form wrong on this evidence. Report it as uncertain or find a teatmik rule. |
 | `lookup` → väärtusolek `väldi` / `endine` / `mööndav` / `küsitav` | A real warning in that dataset | |
 | `teatmik_search` hit list | That such an article exists | What the rule says. Read it with `teatmik_article` before you cite it. |
+| `check_commas` → „Kontrolli kindlasti” | A rule check found a comma that is almost certainly missing or superfluous: fix it, citing the handbook section it names | — |
+| `check_commas` → „Kaalu” | A comma that depends on the meaning or stress, or is free (lauselühendid appear only here) | An error. Decide by the sentence's meaning: report it as Soovitus or leave it. |
+| `check_commas` finds nothing | No comma rule it knows was broken | **That the commas are right.** It does not see lists, järellisandid, direct speech, most lauselühendid or commas that depend on meaning, and some errors in long, complex sentences stay unfound (see its „Mida see kontroll ei leia” note). It does not replace your own reading of the commas. |
 
 ## Querying the teatmik
 
@@ -72,7 +76,7 @@ For commas and sentence structure, also query the handbook: `kind: "kasiraamat"`
 
 ## The loop
 
-1. **`scan_text` on the whole text** (or per section for long texts; it checks at most `max_words` unique words and says what it skipped). Take its list as the first set of candidates; verify each with `check_form`, `recommendation` or `lookup` before reporting.
+1. **`scan_text` and `check_commas` on the whole text**, in the same turn (they are independent). `scan_text` checks at most `max_words` unique words and says what it skipped (use sections for long texts): take its list as the first set of candidates and verify each with `check_form`, `recommendation` or `lookup` before reporting. `check_commas` goes with every text you proofread and with every „kas siia käib koma” question (pass the sentence); fix its „Kontrolli kindlasti” items, decide each „Kaalu” by the meaning, and quote the handbook section it cites. If it ends with `[jätk: offset=N]`, call again with that `offset`.
 2. Then work **sentence by sentence**. Number the paragraphs and sentences; do not read the text as a whole and report impressions. For each sentence, run down this trigger list. Only call a tool when a trigger fires.
 
 | Trigger in the sentence | Tool |
@@ -81,7 +85,7 @@ For commas and sentence structure, also query the handbook: `kind: "kasiraamat"`
 | A form you cannot place, or that looks off | `check_form` (with `word` when you know the base word) |
 | Two words that could be one, or one that could be two | `teatmik_search` `kokku- ja lahkukirjutamine` |
 | A capital on a common noun, or a lowercase name | `teatmik_search` `algustäht` |
-| Comma near *et, mis, kui, ja, kuid*; a kiil; a lauselühend | `teatmik_search` `koma` (`koik` already includes the handbook; `kind: "kasiraamat"` for syntax sections only) |
+| Comma near *et, mis, kui, ja, kuid*; a kiil; a lauselühend; a list | `check_commas` (step 1) covers most; for the rule behind a finding, or for what it does not see (lists, järellisandid, meaning-dependent commas), `teatmik_search` `koma` (`koik` already includes the handbook; `kind: "kasiraamat"` for syntax sections only) |
 | Numbers, dates, percentages, abbreviations | `teatmik_search` `arvud` / `lühendid` |
 | `poolt`-passive, `läbi viima`, `omab`, `antud`, `seoses`, `tulenevalt` | `teatmik_search` `kantseliit` |
 | A term of the subject field | `lookup` with `dataset` (`usu`, `ust`, `esterm`) |
@@ -117,7 +121,9 @@ The same shape as the Finnish proofreading skill. Headers in the answer's langua
 
 | Mistake | Fix |
 |---|---|
-| „`scan_text` ei leidnud midagi, tekst on korras” | It only checks word forms and warnings. Commas, kokku-lahku, capitals and style need the loop. |
+| „`scan_text` ei leidnud midagi, tekst on korras” | It only checks word forms and warnings. Commas need `check_commas`; kokku-lahku, capitals and style need the loop. |
+| „`check_commas` ei leidnud midagi, komad on korras” | It misses lists, järellisandid and commas that depend on meaning. Read the commas against the trigger list. |
+| Reporting every „Kaalu” item as an error | „Kaalu” = decide by the sentence's meaning; „Kontrolli kindlasti” = fix, after reading the cited rule. |
 | „`recommendation` ei leidnud midagi, sõna on korras” | It only checks warning flags. Kantseliit and style need a teatmik query. |
 | „`lemmatize` leidis algvormi, vorm on õige” | It lemmatised `tekkib` too. Use `check_form`, and mind multiple paradigms. |
 | Reporting an Esterm „väldi” as EKI's verdict | Name the dataset; it is a terminology note in that field. |
