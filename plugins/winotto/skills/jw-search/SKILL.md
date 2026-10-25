@@ -1,6 +1,6 @@
 ---
 name: jw-search
-description: "Use the jw.org tools to look up Bible verses (New World Translation), their study Bible notes and the publications that explain them, search jw.org content, read articles, get the daily text and the meeting workbook, and search video subtitles. TRIGGER when: user asks about Bible verses, scriptures, JW publications, Watchtower articles, jw.org content, JW videos, morning worship, the daily text, the meeting workbook, or anything related to Jehovah's Witnesses content. Also trigger when user mentions 'Bible', 'scripture', 'verse', 'jw.org', 'Watchtower', 'piibel', 'piiblisalm', 'kirjakoht', 'õppepiibel', 'õppemärkus', 'study notes', 'what does this verse mean', 'salmi selgitused', 'päevatekst', 'töövihik', 'koosolek', 'jw video', 'subtitle search', or wants to find what a speaker said in a talk. For a verse's meaning read the study notes (get_study_notes) first, then get_verse_references for where publications explain it; for the Hebrew or Greek word data use the piibli-algkeeled skill."
+description: "Use the jw.org tools to look up Bible verses (New World Translation), their study Bible notes and the publications that explain them, search jw.org content, read articles, get the daily text and the meeting workbook, search video subtitles and find pictures. TRIGGER when: user asks about Bible verses, scriptures, JW publications, Watchtower articles, jw.org content, JW videos, morning worship, the daily text, the meeting workbook, or anything related to Jehovah's Witnesses content. Also trigger when user mentions 'Bible', 'scripture', 'verse', 'jw.org', 'Watchtower', 'piibel', 'piiblisalm', 'kirjakoht', 'õppepiibel', 'õppemärkus', 'salmi selgitused', 'pilt', 'pildid', 'pictures', 'päevatekst', 'töövihik', 'koosolek', 'jw video', 'subtitle search', or wants to find what a speaker said in a talk. For a verse's meaning read the study notes (get_study_notes) first, then get_verse_references for where publications explain it; for the Hebrew or Greek word data use the piibli-algkeeled skill."
 ---
 
 # jw.org search
@@ -34,6 +34,7 @@ The tools may carry a prefix depending on how they were added. In the one-connec
 | `search_bible_books` | book names and numbers: Estonian/English, plus the names in `language` | `query`, `limit`, `language` |
 | `search_jw` | articles, verses and videos on jw.org; index hits are collapsed to one line | `query`, `language`, `limit`, `sort` (`relevance`/`newest`), `type` (`all`/`article`/`video`/`index`) |
 | `read_jw_page` | the text of a jw.org or wol.jw.org page, in parts | `url`, `max_chars` (default 12000), `offset` |
+| `search_images` | pictures from jw.org articles on a topic, person or event (artwork, photos, diagrams), best matches first, each with its caption, article link and picture link; in Claude a gallery shows them („Otsi pilte”) | `query`, `query_en` (the English term when the language is not English; used when the language has few pictures), `language`, `limit` (default 12, max 24) |
 | `get_daily_text` | the daily text („Uuri pühakirja iga päev”) | `date` (`YYYY-MM-DD`, empty = today), `language` |
 | `get_meeting_workbook` | the midweek meeting programme for the week of a date | `date` (empty = this week), `language` |
 | `search_video_subtitles` | what was said in recent videos, with a link to the moment; `all` scans the newest videos of every category (`max_videos` of them) and answers in a few seconds | `query` (stem), `category` (name or key, several comma-separated, or `all`), `language`, `limit`, `max_videos` |
@@ -68,6 +69,11 @@ The user remembers words („tõde teeb teid vabaks”) but not the reference.
 1. `search_video_subtitles` with a stem and a category (`Hommikused piibliarutelud`), or `all`: the newest videos across all categories (`max_videos` of them, default 50), which answers in a few seconds. A named category takes an equal share of each category's newest. Hits link to the moment in the video.
 2. The tool scans recent videos and says how many of how many it scanned; when it stops early (after about 25 seconds) or some category lists could not be loaded, it says so. Tell the user the result is partial.
 3. Nothing found? Try another stem or synonym, a wider category or `all`, a larger `max_videos`, and then `search_jw` with `type: "video"`, which also finds older videos by title and description.
+
+### Pictures for a topic, talk or lesson
+1. `search_images` with the topic in the user's language (`Mooses`, not `Moses`, in Estonian) and the English term in `query_en`. English pictures come after the user's language, with a line saying so.
+2. Where a gallery is shown (Claude on web, desktop, mobile), the person sees the pictures there: name two or three that fit the request best, with their article links, instead of repeating the list. Where none is shown (Claude Code, the one-connection „Kõik ühes” setup), the list is the result: give the captions with links.
+3. The pictures are jw.org's (© Watch Tower Bible and Tract Society of Pennsylvania): link to them, and for any reuse point to jw.org's terms of use rather than judging it yourself.
 
 ### When a page fails
 `read_jw_page` retries news pages on jw.org when the wol.jw.org copy is missing. If it still fails, give the user the link from the search result and say the page could not be read; do not summarise it from memory.

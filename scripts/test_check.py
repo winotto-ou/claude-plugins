@@ -66,7 +66,7 @@ class CheckTest(unittest.TestCase):
 
     def test_plugin_version(self):
         data = json.loads((REPO / "plugins" / "winotto" / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
-        self.assertEqual("1.2.3", data["version"])
+        self.assertEqual("1.2.4", data["version"])
 
     def test_every_skill_lists_bundle_prefixes(self):
         prefixes = ["jw_", "algkeeled_", "keelenou_", "postkast_", "ariregister_", "suomi_"]
