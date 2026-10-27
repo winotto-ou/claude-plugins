@@ -23,10 +23,6 @@ Kui kasutad Free-plaani (seal saab lisada ainult ühe ühenduse), lisa plugin sk
 
 Ühenduste kasutamiseks on vaja kutset portaali: https://mcp.winotto.com.
 
-## Märkus privaatse repo kohta
-
-Kuni see repo on privaatne, vajab claude.ai selle lugemiseks Claude'i GitHubi rakendust ja Claude Code juurdepääsu GitHubile (näiteks sisselogitud `gh` või GitHubi tunnus). Kuni repo on privaatne, saavad marketplace'i lisada ainult inimesed, kellel on repole juurdepääs.
-
 ## Kontroll
 
 `python3 scripts/check.py` kontrollib manifeste, skille ja seda, et repos ei oleks saladusi. Testid: `python3 scripts/test_check.py`. Kohalik paigalduskontroll ajutise seadistuskaustaga (ei puuduta sinu `~/.claude`): `bash scripts/try_install.sh`.
