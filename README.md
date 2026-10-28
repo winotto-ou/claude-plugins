@@ -7,7 +7,7 @@ Winotto OÜ Claude'i pluginate kogu (marketplace `winotto-ou`). Praegu on siin �
 Töötab igas Claude'i plaanis, ka tasuta.
 
 1. Ava Customize → Plugins (https://claude.ai/customize/plugins).
-2. Vajuta Add → Add marketplace, sisesta `winotto-ou/claude-plugins` ja kinnita.
+2. Vajuta Add → Add marketplace → Add from a repository, sisesta `winotto-ou/claude-plugins` ja vajuta Sync.
 3. Vali pluginate seast `winotto` ja vajuta Add.
 4. Ava plugina Connectors-vahekaart ja vajuta iga ühenduse juures Connect (kui seal on Add, siis enne seda); portaali lehel vajuta „Luba ühendus”.
 
