@@ -4,9 +4,12 @@ Winotto OÜ Claude'i pluginate kogu (marketplace `winotto-ou`). Praegu on siin �
 
 ## Paigaldus claude.ai-s
 
-1. Ava Customize → Plugins → Add → Add marketplace ja sisesta `winotto-ou/claude-plugins`.
-2. Vali plugin `winotto` ja vajuta Install.
-3. Ava plugina Connectors-vahekaart ja vajuta vajalike ühenduste juures Connect.
+Töötab igas Claude'i plaanis, ka tasuta.
+
+1. Ava Customize → Plugins (https://claude.ai/customize/plugins).
+2. Vajuta Add → Add marketplace, sisesta `winotto-ou/claude-plugins` ja kinnita.
+3. Vali pluginate seast `winotto` ja vajuta Add.
+4. Ava plugina Connectors-vahekaart ja vajuta iga ühenduse juures Connect (kui seal on Add, siis enne seda); portaali lehel vajuta „Luba ühendus”.
 
 ## Paigaldus Claude Code'is
 
@@ -14,10 +17,6 @@ Winotto OÜ Claude'i pluginate kogu (marketplace `winotto-ou`). Praegu on siin �
 /plugin marketplace add winotto-ou/claude-plugins
 /plugin install winotto@winotto-ou
 ```
-
-## Free-plaan
-
-Free-plaanis pluginaid ei ole (need on ainult Pro, Max, Team ja Enterprise plaanides) ja lisada saab ühe ühenduse. Seepärast lisa tööriistad portaalist https://mcp.winotto.com ühe ühendusena „Kõik ühes”: vajuta tervituse all „Tasuta Claude” juures „Lisa Claude’i” või lisa aadress `https://mcp.winotto.com/mcp` Claude’is: Customize → Connectors → Add custom connector.
 
 ## Ühenduste kasutamine
 
