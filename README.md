@@ -17,7 +17,7 @@ Winotto OÜ Claude'i pluginate kogu (marketplace `winotto-ou`). Praegu on siin �
 
 ## Free-plaan
 
-Kui kasutad Free-plaani (seal saab lisada ainult ühe ühenduse), lisa plugin skillide jaoks, aga ära vajuta pluginas ühenduste juures „Connect”; lisa tööriistad portaalist reaga „Tasuta Claude? Lisa kõik ühe ühendusena →”.
+Free-plaanis pluginaid ei ole (need on ainult Pro, Max, Team ja Enterprise plaanides) ja lisada saab ühe ühenduse. Seepärast lisa tööriistad portaalist https://mcp.winotto.com ühe ühendusena „Kõik ühes”: vajuta tervituse all „Tasuta Claude” juures „Lisa Claude’i” või lisa aadress `https://mcp.winotto.com/mcp` Claude’is: Customize → Connectors → Add custom connector.
 
 ## Ühenduste kasutamine
 
